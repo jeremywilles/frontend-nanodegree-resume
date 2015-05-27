@@ -1,4 +1,4 @@
-//$("#main").append(["Jeremy Willes "])
+//$("#main").append(["Jeremy Willes"]);
 
 //console.log("Jeremy Willes");
 
@@ -10,25 +10,11 @@
 
 //$("#main").append(funThoughts);
 
-var name = "Jeremy Willes";
-var role = "Web Developer";
-
-
-
-var formattedName = HTMLheaderName.replace("%data%", name);
-
-var formattedRole = HTMLheaderRole.replace("%data%", role);
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-//if we used .append, is appended AFTER the header tag
-//order matters, prepend works backward
-
-//var skills = ["Sales", "Big Data", "FE Developer"];
-
+//var name = "Jeremy Willes";
+//var role = "Web Developer";
 var bio = {
-	"fname": "Jeremy Willes",
-	"krole": "Account Executive",
+	"name": "Jeremy Willes",
+	"role": "Account Executive",
 	"contact": {
 		"email": "jeremywilles@gmail.com",
 		"mobile": "630-818-7810",
@@ -36,10 +22,40 @@ var bio = {
 		"github" : "jeremywilles",
 		"location": "Chicago, IL"
 	},
-	"picture": "",
-	"message": "Greetings!"
+	"picture": "images/fry.jpg",
+	"message": "Greetings!",
 	"skills" : ["Sales", "Big Data", "FE Developer"]
 };
+
+
+var formattedName = HTMLheaderName.replace("%data%", bio.name);
+
+var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+
+var formattedMobile = HTMLmobile.replace("%data%", bio.contact.mobile);
+
+var formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
+
+var formattedTwitter = HTMLtwitter.replace("%data%", bio.contact.twitter);
+
+var formattedPic = HTMLbioPic.replace("%data%", bio.picture);
+
+$("#header").prepend(formattedRole);
+$("#header").prepend([formattedName]);
+$("#header").append(formattedPic);
+$("#header").append([formattedMobile, formattedEmail, formattedTwitter]);
+//$("#header").append(formattedEmail);
+//$("#header").append(formattedTwitter);
+
+
+//if we used .append, is appended AFTER the header tag
+//order matters, prepend works backward
+
+//var skills = ["Sales", "Big Data", "FE Developer"];
+
+
+
+
 
 
 
