@@ -4,7 +4,7 @@
 
 var bio = {
 	"name": "Jeremy Willes",
-	"role": "Account Executive",
+	"role": "Aspiring Front End Engineer",
 	"contact": {
 		"email": "jeremywilles@gmail.com",
 		"mobile": "630-818-7810",
@@ -95,7 +95,14 @@ var education = {
 	]
 }
 
+var formattedName = HTMLheaderName.replace("%data%", bio["name"]);
+var formattedRole = HTMLheaderRole.replace("%data%", bio["role"]);
+var formattedbioPic = HTMLbioPic.replace("%data%", bio["picture"]);
 
+$('#header').prepend(formattedRole);
+$('#header').prepend(formattedName);
+
+$('#header').append(formattedbioPic);
 
 if (bio.skills.length > 0){
 	
