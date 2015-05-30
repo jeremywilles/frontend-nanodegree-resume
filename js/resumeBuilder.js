@@ -21,7 +21,7 @@ var work = {
 	"company": [
 		{
 			"name": "Infobright, Inc.",
-			"city": "Chicago, Il",
+			"location": "Chicago, Il",
 			"role": "Account Executive",
 			"years": "2012 - Present",
 			"description": "Responsible for selling and negotiating contracts with OEM partners across the globe. "
@@ -29,18 +29,38 @@ var work = {
 		},
 		{
 			"name": "IBM",
-			"city": "Chicago, Il",
+			"location": "Chicago, Il",
 			"role": "Account Representative",
 			"years": "2010 - 2012",
 			"description": "Consultative selling to mid­market commercial accounts within the United States."
 		},
 		{
 			"name": "SPSS Inc.",
-			"city": "Chicago, Il",
+			"location": "Chicago, Il",
 			"role": "Account Representative",
 			"years": "2004 - 2010",
 			"description": "Consultative selling to Department of Defense accounts within the United States."
 		}]
+}
+
+work.displayWork = function(){
+	for (job in work.company){
+		$("#workExperience").append(HTMLworkStart);
+
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.company[job].name);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.company[job].role);
+		var formattedEmployerTitle = formattedEmployer + formattedTitle
+		var formattedDates = HTMLworkDates.replace("%data%", work.company[job].years);
+		var formattedLocation = HTMLworkLocation.replace("%data%", work.company[job].location);
+		var formattedDescription = HTMLworkDescription.replace("%data%", work.company[job].description)
+		$(".work-entry:last").append(formattedEmployerTitle);
+		$(".work-entry:last").append(formattedDates);
+		$(".work-entry:last").append(formattedLocation);
+		$(".work-entry:last").append(formattedDescription);
+
+	//var formattedDates = HTMLworkDates.replace("%data%", work.company[job].years);
+	//$(".")
+	}	
 }
 
 
@@ -49,7 +69,7 @@ var education = {
 	"schools" : [
 		{
 			"name": "Northern Illinois University",
-			"city": "Naperville, Illinois",
+			"location": "Naperville, Illinois",
 			"degree": "MBA",
 			"major" : "Information Systems",
 			"years": "2008 - 2011"
@@ -57,7 +77,7 @@ var education = {
 		},
 		{
 			"name": "University of Phoenix",
-			"city": "Warrenville, Illinois",
+			"location": "Warrenville, Illinois",
 			"degree": "BA",
 			"major" : "Business Management and Administration",
 			"years": "2004 - 2007"
@@ -95,6 +115,43 @@ var education = {
 	]
 }
 
+var projects = {
+	"list" : [
+		{
+			"title": "Portfolio Site",
+			"dates": "May 2015",
+			"description": "Udacity Front End Nanodegree project showcasing HTML, CSS, Bootstrap, and Responsive Design",
+			"image": "images/fry.jpg"
+		},
+		{
+			"title": "Online Resume",
+			"dates": "May 2015",
+			"description": "Udacity Front End Nanodegree project showcasing Javascript and jQuery",
+			"image": "images/fry.jpg"
+		}
+
+	]
+
+
+}
+
+projects.display = function(){
+		
+	for (proj in projects.list){
+		$('#projects').append(HTMLprojectStart);
+		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.list[proj].title);
+		var formattedDates = HTMLprojectDates.replace("%data%", projects.list[proj].dates);
+		var formattedDescription= HTMLprojectDescription.replace("%data%", projects.list[proj].description);
+		var formattedImage = HTMLprojectImage.replace("%data%", projects.list[proj].image);
+		$(".project-entry:last").append(formattedTitle);
+		$(".project-entry:last").append(formattedDates);
+		$(".project-entry:last").append(formattedDescription);
+		$(".project-entry:last").append(formattedImage);
+	}
+}
+
+	
+
 var formattedName = HTMLheaderName.replace("%data%", bio["name"]);
 var formattedRole = HTMLheaderRole.replace("%data%", bio["role"]);
 var formattedbioPic = HTMLbioPic.replace("%data%", bio["picture"]);
@@ -116,26 +173,27 @@ if (bio.skills.length > 0){
 	}
 } 
 
-var displayWork = function(){
-	for (job in work.company){
-		$("#workExperience").append(HTMLworkStart);
 
-		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.company[job].name);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.company[job].role);
-		var formattedEmployerTitle = formattedEmployer + formattedTitle
-		var formattedDates = HTMLworkDates.replace("%data%", work.company[job].years);
-		var formattedLocation = HTMLworkLocation.replace("%data%", work.company[job].city);
-		var formattedDescription = HTMLworkDescription.replace("%data%", work.company[job].description)
-		$(".work-entry:last").append(formattedEmployerTitle);
-		$(".work-entry:last").append(formattedDates);
-		$(".work-entry:last").append(formattedLocation);
-		$(".work-entry:last").append(formattedDescription);
 
-	//var formattedDates = HTMLworkDates.replace("%data%", work.company[job].years);
-	//$(".")
-	}	
+
+
+work.displayWork();
+
+projects.display();
+
+function inName(name){
+	name = name.trim().split();
+	name[1] = name[1].toUpperCase();
+	name[0] = name[0].slice(0,1).toUpperCase()+
+	name[0].slice(1).toLowerCase();
+
+
+	return name[0] + " " + name[1];
+
 }
 
-displayWork();
+$('.main').append(internationalizeButton);
+
+$("#mapDiv").append(googleMap);
 
 
