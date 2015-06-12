@@ -121,13 +121,13 @@ var projects = {
 			"title": "Portfolio Site",
 			"dates": "May 2015",
 			"description": "Udacity Front End Nanodegree project showcasing HTML, CSS, Bootstrap, and Responsive Design",
-			"image": "images/fry.jpg"
+			"image": "images/port.jpg"
 		},
 		{
 			"title": "Online Resume",
 			"dates": "May 2015",
 			"description": "Udacity Front End Nanodegree project showcasing Javascript and jQuery",
-			"image": "images/fry.jpg"
+			"image": "images/resume.jpg"
 		}
 
 	]
