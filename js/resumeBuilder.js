@@ -17,6 +17,43 @@ var bio = {
 	"skills" : ["Sales", "Big Data", "FE Developer"]
 }
 
+bio.displayBio = function(){
+	var formattedName = HTMLheaderName.replace("%data%", bio["name"]);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio["role"]);
+	var formattedbioPic = HTMLbioPic.replace("%data%", bio["picture"]);
+	var formattedMobile = HTMLmobile.replace("%data%", bio["contact"]["mobile"]);
+	var formattedEmail = HTMLemail.replace("%data%", bio["contact"]["email"]);
+	var formattedTwitter = HTMLtwitter.replace("%data%", bio["contact"]["twitter"]);
+	var formattedGithub = HTMLgithub.replace("%data%", bio["contact"]["github"]);
+	var formattedLocation = HTMLlocation.replace("%data%", bio["contact"]["location"]);
+	var formattedWelcome = HTMLwelcomeMsg.replace("%data%",bio["message"]);
+	$('#header').prepend(formattedRole);
+	$('#header').prepend(formattedName);
+	$('#topContacts').append(formattedMobile, formattedEmail,formattedTwitter,
+		formattedGithub,formattedLocation);
+	$('#header').append(formattedbioPic);
+	$('#header').append(formattedWelcome);
+	
+	
+	if (bio.skills.length > 0){
+	
+		$("#header").append(HTMLskillsStart);
+
+		//var formattedSkills = HTMLskillsStart.replace("%data%",bio.skills);
+		//$(#skills).prepend(formattedSkills);
+	
+		for(skill in bio.skills){
+			var skills2 = HTMLskills.replace("%data%", bio.skills[skill]);
+			$("#skills").prepend(skills2);
+		}
+	} 
+
+	$('#footerContacts').append(formattedMobile, formattedEmail,formattedTwitter,
+		formattedGithub,formattedLocation);
+}
+
+
+
 var work = {
 	"company": [
 		{
@@ -150,32 +187,8 @@ projects.display = function(){
 	}
 }
 
-	
 
-var formattedName = HTMLheaderName.replace("%data%", bio["name"]);
-var formattedRole = HTMLheaderRole.replace("%data%", bio["role"]);
-var formattedbioPic = HTMLbioPic.replace("%data%", bio["picture"]);
-
-$('#header').prepend(formattedRole);
-$('#header').prepend(formattedName);
-
-$('#header').append(formattedbioPic);
-
-if (bio.skills.length > 0){
-	
-	$("#header").append(HTMLskillsStart);
-
-	//var formattedSkills = HTMLskillsStart.replace("%data%",bio.skills);
-	
-	for(skill in bio.skills){
-		var skills2 = HTMLskills.replace("%data%", bio.skills[skill]);
-		$("#skills").append(skills2);
-	}
-} 
-
-
-
-
+bio.displayBio();
 
 work.displayWork();
 
