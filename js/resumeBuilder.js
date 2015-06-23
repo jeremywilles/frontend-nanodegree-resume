@@ -1,6 +1,3 @@
-//bio, work, education and projects objects to be completed. 
-//everything else can be deleted
-
 
 var bio = {
 	"name": "Jeremy Willes",
@@ -15,7 +12,7 @@ var bio = {
 	"picture": "images/fry.jpg",
 	"message": "Greetings!",
 	"skills" : ["Sales", "Big Data", "FE Developer"]
-}
+};
 
 bio.displayBio = function(){
 	var formattedName = HTMLheaderName.replace("%data%", bio["name"]);
@@ -33,26 +30,18 @@ bio.displayBio = function(){
 		formattedGithub,formattedLocation);
 	$('#header').append(formattedbioPic);
 	$('#header').append(formattedWelcome);
-	
-	
+		
 	if (bio.skills.length > 0){
-	
 		$("#header").append(HTMLskillsStart);
 
-		//var formattedSkills = HTMLskillsStart.replace("%data%",bio.skills);
-		//$(#skills).prepend(formattedSkills);
-	
 		for(skill in bio.skills){
 			var skills2 = HTMLskills.replace("%data%", bio.skills[skill]);
-			$("#skills").prepend(skills2);
+			$("#skills:last").append(skills2);
 		}
 	} 
-
 	$('#footerContacts').append(formattedMobile, formattedEmail,formattedTwitter,
 		formattedGithub,formattedLocation);
-}
-
-
+};
 
 var work = {
 	"company": [
@@ -62,7 +51,6 @@ var work = {
 			"role": "Account Executive",
 			"years": "2012 - Present",
 			"description": "Responsible for selling and negotiating contracts with OEM partners across the globe. "
-		
 		},
 		{
 			"name": "IBM",
@@ -78,7 +66,7 @@ var work = {
 			"years": "2004 - 2010",
 			"description": "Consultative selling to Department of Defense accounts within the United States."
 		}]
-}
+};
 
 work.displayWork = function(){
 	for (job in work.company){
@@ -94,13 +82,8 @@ work.displayWork = function(){
 		$(".work-entry:last").append(formattedDates);
 		$(".work-entry:last").append(formattedLocation);
 		$(".work-entry:last").append(formattedDescription);
-
-	//var formattedDates = HTMLworkDates.replace("%data%", work.company[job].years);
-	//$(".")
 	}	
-}
-
-
+};
 
 var education = {
 	"schools" : [
@@ -109,18 +92,15 @@ var education = {
 			"location": "Naperville, Illinois",
 			"degree": "MBA",
 			"major" : "Information Systems",
-			"years": "2008 - 2011"
-
+			"years": 2011
 		},
 		{
 			"name": "University of Phoenix",
 			"location": "Warrenville, Illinois",
 			"degree": "BA",
 			"major" : "Business Management and Administration",
-			"years": "2004 - 2007"
-
-		}
-	], 
+			"years": 2007
+		}], 
 
 	"onlineCourses":[
 		{
@@ -146,11 +126,44 @@ var education = {
 			"school": "Rice University - Coursera",
 			"dates": 2014,
 			"url": "https://www.coursera.org/specialization/fundamentalscomputing2/37"
+		}]
+};
+
+education.displayEdu = function(){
+	
+	var len = education.schools.length;
+	$('#education').append(HTMLschoolStart);
+	for(var i = 0; i<len; i++){
+		var formattedName = HTMLschoolName.replace("%data%", education.schools[i].name);
+		var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
+		var formattedDate = HTMLschoolDates.replace("%data%", education.schools[i].years);
+		var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
+		var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[i].major);
+		var nameTitle = formattedName+formattedDegree;
+		$(".education-entry").append(nameTitle);
+		$(".education-entry").append(formattedDate);
+		$(".education-entry").append(formattedLocation);
+		$(".education-entry").append(formattedMajor);
+	}
+
+	var len2 = education.onlineCourses.length;
+	if(len2 > 0){
+		$('#education').append(HTMLonlineClasses);
+		$('#education').append(HTMLschoolStart);
+		
+		for(var i = 0; i<len2; i++){
+			var formattedOnline = HTMLonlineTitle.replace("%data%",education.onlineCourses[i].title);
+			var formattedSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[i].school);
+			var formattedDates = HTMLonlineDates.replace("%data%",education.onlineCourses[i].dates);
+			var formattedURL = HTMLonlineURL.replace("%data%",education.onlineCourses[i].url);
+			var fullName = formattedOnline+formattedSchool;
+			$(".education-entry:last").append(fullName);
+			$(".education-entry:last").append(formattedDates);
+			$(".education-entry:last").append(formattedURL);
 		}
-
-
-	]
-}
+	}
+	
+};
 
 var projects = {
 	"list" : [
@@ -165,14 +178,11 @@ var projects = {
 			"dates": "May 2015",
 			"description": "Udacity Front End Nanodegree project showcasing Javascript and jQuery",
 			"image": "images/resume.jpg"
-		}
+		}]
 
-	]
+};
 
-
-}
-
-projects.display = function(){
+projects.displayProj = function(){
 		
 	for (proj in projects.list){
 		$('#projects').append(HTMLprojectStart);
@@ -185,27 +195,16 @@ projects.display = function(){
 		$(".project-entry:last").append(formattedDescription);
 		$(".project-entry:last").append(formattedImage);
 	}
-}
+};
 
 
 bio.displayBio();
 
 work.displayWork();
 
-projects.display();
+projects.displayProj();
 
-function inName(name){
-	name = name.trim().split();
-	name[1] = name[1].toUpperCase();
-	name[0] = name[0].slice(0,1).toUpperCase()+
-	name[0].slice(1).toLowerCase();
-
-
-	return name[0] + " " + name[1];
-
-}
-
-$('.main').append(internationalizeButton);
+education.displayEdu();
 
 $("#mapDiv").append(googleMap);
 
